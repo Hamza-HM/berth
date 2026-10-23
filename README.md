@@ -32,6 +32,18 @@ Add the contents of `examples/bindings.lua` to `~/.config/hypr/bindings.lua`, th
 
 Omarchy already binds Super+1 and Super+2. The snippet removes those binds only when the layout uses `code:10` or `code:11`.
 
+## Remove
+
+```sh
+omarchy plugin remove hamza.berth
+```
+
+This asks before it disables the widget and deletes the plugin folder, including `layout.json`. Delete the Berth lines from `~/.config/hypr/bindings.lua` yourself, then run `hyprctl reload`. Monitor position and resolution are left as they are.
+
+## Dependencies
+
+Berth runs inside Omarchy. It uses the Hyprland tools that ship with Omarchy and installs no other packages.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
