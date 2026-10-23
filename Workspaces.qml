@@ -372,6 +372,55 @@ BarWidget {
     }
   }
 
+  readonly property bool opened: panelLoader.item ? panelLoader.item.opened === true : false
+
+  function open() {
+    if (panelLoader.item && panelLoader.item.open) panelLoader.item.open()
+  }
+
+  function close() {
+    if (panelLoader.item && panelLoader.item.close) panelLoader.item.close()
+  }
+
+  function togglePanel() {
+    if (panelLoader.item && panelLoader.item.toggle) panelLoader.item.toggle()
+  }
+
+  function injectPanel() {
+    var target = panelLoader.item
+    if (!target) return
+    if ("bar" in target) target.bar = root.bar
+    if ("anchorItem" in target) target.anchorItem = editButton
+    if ("hostWidget" in target) target.hostWidget = root
+  }
+
+  onBarChanged: injectPanel()
+
+  Loader {
+    id: panelLoader
+    active: true
+    source: Qt.resolvedUrl("SetupPanel.qml")
+    visible: false
+    onLoaded: {
+      root.injectPanel()
+      Qt.callLater(root.injectPanel)
+    }
+  }
+
+  // Hyprland drops the mouse release when the click also focuses the window
+  // on this screen, so these actions run on the press.
+  component PressTarget: MouseArea {
+    anchors.fill: parent
+    z: 1
+    preventStealing: true
+    hoverEnabled: true
+    cursorShape: Qt.PointingHandCursor
+    signal act()
+    onEntered: if (parent.bar) parent.bar.showTooltip(parent, parent.tooltipText)
+    onExited: if (parent.bar) parent.bar.hideTooltip(parent)
+    onPressed: act()
+  }
+
   implicitWidth: row.implicitWidth + trailingGap
   implicitHeight: row.implicitHeight
 
@@ -400,8 +449,17 @@ BarWidget {
         horizontalMargin: 8
         verticalPadding: 6
         fixedHeight: root.barSize
-        onPressed: function() { root.focusWorkspace(modelData) }
+        PressTarget { onAct: root.focusWorkspace(parent.text) }
       }
+    }
+
+    BarIconButton {
+      id: editButton
+      bar: root.bar
+      text: "\uf304"
+      tooltipText: "Edit workspaces"
+      slotSize: root.barSize
+      PressTarget { onAct: root.togglePanel() }
     }
   }
 }

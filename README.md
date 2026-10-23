@@ -18,9 +18,15 @@ Enable it on the left of the bar when asked, or later:
 omarchy plugin enable hamza.berth --section left
 ```
 
+## Set up
+
+Click the edit control on the workspace area. Each connected screen is listed by its model. Show flashes that screen. Add as many names as you want, mark one as home, and save. A key is filled in from Numpad 1 onward. Click that key and press another to replace it, then save. Past the tenth name, a workspace with no key stays on the bar and is opened with a click.
+
+If the keys are not installed yet, the panel can add one line to `~/.config/hypr/bindings.lua`. That line loads `hyprland.lua`. Your other bindings stay as they are.
+
 ## Layout
 
-Copy `layout.example.json` to `~/.config/omarchy/plugins/hamza.berth/layout.json`. The bar and the keybindings both read that file.
+The panel writes `~/.config/omarchy/plugins/hamza.berth/layout.json`. You can edit that file instead. The bar and the keybindings both read it.
 
 `model` must appear in the description printed by `hyprctl monitors`. `serial` must match that monitor. `home` is the workspace the monitor opens on. `key` is a Hyprland key name, usually a numpad keycode such as `code:87`. `make` is a note for you. The matcher does not use it.
 

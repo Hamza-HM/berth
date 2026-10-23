@@ -15,4 +15,5 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y lua5.4
       - run: node test/layout.test.js
       - run: node test/clients.test.js
+      - run: node test/setup.test.js
       - run: lua5.4 test/layout_test.lua
