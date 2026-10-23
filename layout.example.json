@@ -1,0 +1,14 @@
+{
+  "screens": [
+    {
+      "make": "Example Maker",
+      "model": "Panel",
+      "serial": "SERIAL",
+      "home": "main",
+      "workspaces": [
+        { "name": "main", "key": "code:87" },
+        { "name": "side", "key": "code:88" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "hamza.berth",
+  "name": "Berth",
+  "version": "1.0.0",
+  "author": "Hamza Hed Messaoud",
+  "description": "Pin named Hyprland workspaces to a physical monitor by model and serial, and show only that screen's occupied workspaces on the Omarchy bar.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Workspaces.qml"
+  },
+  "barWidget": {
+    "displayName": "Berth",
+    "description": "Pin named Hyprland workspaces to a physical monitor by model and serial, and show only that screen's occupied workspaces on the Omarchy bar.",
+    "category": "Compositor",
+    "defaultSection": "left",
+    "allowMultiple": false
+  }
+}
