@@ -11,7 +11,7 @@ import "Setup.js" as Setup
 
 Panel {
   id: root
-  moduleName: "hamza.berth"
+  moduleName: "hamza.berth.setup"
   manageIpc: false
 
   property var anchorItem: null

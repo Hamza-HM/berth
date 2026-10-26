@@ -12,15 +12,20 @@ Monitor position and resolution stay in your Hyprland monitor config. This file 
 omarchy plugin add https://github.com/Hamza-HM/berth.git
 ```
 
-Enable it on the left of the bar when asked, or later:
+The workspace names and the setup control are separate bar items, so each can sit on its own side. Omarchy loads one widget from each plugin folder, and it refuses a link. Copy the setup widget, then enable both:
 
 ```sh
+cp -a ~/.config/omarchy/plugins/hamza.berth/setup ~/.config/omarchy/plugins/hamza.berth.setup
+omarchy-shell shell rescanPlugins
 omarchy plugin enable hamza.berth --section left
+omarchy plugin enable hamza.berth.setup --section right
 ```
+
+After an update, copy that setup folder again before you reload the shell.
 
 ## Set up
 
-Click the edit control on the workspace area. Each connected screen is listed by its model. Show flashes that screen. Add as many names as you want, mark one as home, and save. A key is filled in from Numpad 1 onward. Click that key and press another to replace it, then save. Past the tenth name, a workspace with no key stays on the bar and is opened with a click.
+Click the setup control. It is its own item on the bar, separate from the workspace names. Each connected screen is listed by its model. Show flashes that screen. Add as many names as you want, mark one as home, and save. A key is filled in from Numpad 1 onward. Click that key and press another to replace it, then save. Past the tenth name, a workspace with no key stays on the bar and is opened with a click.
 
 If the keys are not installed yet, the panel can add one line to `~/.config/hypr/bindings.lua`. That line loads `hyprland.lua`. Your other bindings stay as they are.
 
@@ -41,10 +46,11 @@ Omarchy already binds Super+1 and Super+2. The snippet removes those binds only 
 ## Remove
 
 ```sh
+omarchy plugin remove hamza.berth.setup
 omarchy plugin remove hamza.berth
 ```
 
-This asks before it disables the widget and deletes the plugin folder, including `layout.json`. Delete the Berth lines from `~/.config/hypr/bindings.lua` yourself, then run `hyprctl reload`. Monitor position and resolution are left as they are.
+Remove the setup widget first. Each command asks before it disables that widget and deletes its folder. Removing Berth also deletes `layout.json`. Delete the Berth lines from `~/.config/hypr/bindings.lua` yourself, then run `hyprctl reload`. Monitor position and resolution are left as they are.
 
 ## Dependencies
 
