@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "hamza.berth.setup",
+  "name": "Berth setup",
+  "version": "1.0.0",
+  "author": "Hamza Hed Messaoud",
+  "description": "Open the Berth workspace setup panel.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "SetupButton.qml"
+  },
+  "barWidget": {
+    "displayName": "Berth setup",
+    "description": "Open the Berth workspace setup panel.",
+    "category": "Compositor",
+    "defaultSection": "right",
+    "allowMultiple": false
+  }
+}
